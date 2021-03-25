@@ -275,7 +275,7 @@ function sendKinkyChoreInstructions(choreType) {
 
         let tasks = 0;
         while (tasks < 1) {
-            let id = randomInteger(0, 15);
+            let id = randomInteger(0, 45);
 
             //No switch because switch doesn't support variables inside switch cases
             if (id === 0) {
@@ -520,7 +520,7 @@ function sendKinkyChoreInstructions(choreType) {
                     tempChoreTimeMultiplier += 0.5;
                     tasks++;
                 }
-            } else if (id === 11) {
+            } else if ((id === 11) || (id > 15)) {
                 let taskCreated = false;
                 if(HIGH_HEEL_TOY.hasToy()) {
                     let highHeel = getRandomHighHeel();
