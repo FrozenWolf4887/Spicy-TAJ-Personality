@@ -337,7 +337,7 @@ function createRoom(name, size) {
             if (lastDate === -1) {
                 return lastDate;
             } else {
-                return millisToTimeUnit(getMillisSinecDate(lastDate), TIME_UNIT_SECONDS, 0);
+                return Math.floor(getMillisSinecDate(lastDate) / 1000);
             }
         },
 
