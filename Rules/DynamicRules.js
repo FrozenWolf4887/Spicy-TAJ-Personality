@@ -94,12 +94,12 @@ let RULE_ALWAYS_WEAR_WOMAN_SOCKS;
         if(isEnforcingPersonality()) {
             sendMessage('And I want you to wear it whenever you can');
             sendMessage('So definitely during our sessions and additionally whenever you are home alone');
-            sendMessage('You should always feel owned by me and this will remember you of that');
+            sendMessage('You should always feel owned by me and this will remind you of that');
             sendMessage('So make sure to wear it whenever possible from now on %SlaveName%');
         } else {
             sendMessage('And I think you should wear it whenever you can');
             sendMessage('So definitely during our sessions and additionally whenever you are home alone');
-            sendMessage('You should always feel owned by me and this will remember you of that');
+            sendMessage('You should always feel owned by me and this will remind you of that');
 
             if(!sendYesOrNoQuestion('Would you do that for me %SlaveName%')) {
                 changeMeritMedium(true);
@@ -146,7 +146,7 @@ let RULE_ALWAYS_WEAR_WOMAN_SOCKS;
                     sendMessage('What did I just tell you?');
                     sendMessage('You will address me PROPERLY %SlaveName% using %DomHonorific%');
                     registerForgetHonorific();
-                    sendMessage('Is this understood %SlaveName%?');
+                    sendMessage('Is this understood %SlaveName%?', 0);
                     answer.loop();
                 } else {
                     sendMessage('%Good% %EmoteHappy%');
@@ -164,10 +164,10 @@ let RULE_ALWAYS_WEAR_WOMAN_SOCKS;
 
                 sendMessage('You will always address me as your %DomHonorific% from now on');
                 sendMessage('So if you would answer "Yes" normally you will answer with "Yes %DomHonorific%" from now one. Same goes for "please", questions and basically everything else');
-                sendMessage('Is this understood %SlaveName%?');
+                sendMessage('Is this understood %SlaveName%?', 0);
                 answer.loop();
             } else {
-                sendMessage('%YesOrNo%');
+                sendMessage('%YesOrNo%', 0);
                 answer.loop();
             }
         }
@@ -292,7 +292,7 @@ let RULE_ALWAYS_WEAR_WOMAN_SOCKS;
                         sendMessage("Suit yourself %SlaveName%");
                         break;
                     } else {
-                        sendMessage(YES_OR_NO);
+                        sendMessage(YES_OR_NO, 0);
                         answer.loop();
                     }
                 }
