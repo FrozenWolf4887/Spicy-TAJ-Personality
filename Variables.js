@@ -118,6 +118,8 @@ const VARIABLE = {
     LOCKED_UP_LIMIT: "lockedUpLimit",
 
     HAS_CHASTITY: "hasChastity",
+
+    //Active cage
     ACTIVE_CHASTITY_CAGE: "activeChastityCage",
 
     CHASTITY_SPIKES_ON: "chastitySpikesOn",
@@ -139,6 +141,10 @@ const VARIABLE = {
     DENIAL_UNTIL: "denialUntil",
 
     LAST_CHASTITY_CLEAN: "lastChastityCleanDate",
+
+    LAST_CHASTITY_OFF_TASK: "lastChastityOffTask",
+
+    CHASTITY_OFF_TASK_ALLOWED_COUNTER: "chastityOffTaskAllowedCounter",
 
     WAITING_FOR_CHASTITY_KEY_RETURN: "waitingForChastityKeyReturn",
 

@@ -26,6 +26,8 @@ let RULE_FOLLOW_DAILY_TASKS;
 
 let RULE_ALWAYS_WEAR_WOMAN_SOCKS;
 
+let RULE_EVENING_RITUAL;
+
 {
     let ruleId = 0;
 
@@ -687,6 +689,16 @@ let RULE_ALWAYS_WEAR_WOMAN_SOCKS;
 
     AVAILABLE_RULES.push(rule);
 
+    rule = RULE_EVENING_RITUAL = createRule(ruleId++, false);
+
+    rule.getRulePrint = function () {
+        return 'You must be follow all evening ritual instructions before going to bed';
+    };
+
+    rule.canBeActivated = function () {
+        return isFullTime();
+    };
+
     //Update all existing rules
     for (let index = 0; index < AVAILABLE_RULES.length; index++) {
         //TODO: Notify rule ended?
@@ -769,12 +781,14 @@ function shouldIntroduceNewRule(rule) {
     return false;
 }
 
-function createRule(id, punishment, minDays = -1, maxDays = -1) {
+
+
+function createRule(id, punishment, minDays = -1, maxDays = -1, prefix = 'rule') {
     let rule = {
         id: id, punishment: punishment, minDays: minDays, maxDays: maxDays,
 
         getVarName: function () {
-            return 'rule' + this.id;
+            return prefix + this.id;
         },
 
         isActive: function () {
