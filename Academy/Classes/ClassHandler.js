@@ -90,7 +90,7 @@ function handleTodayAcademyClasses() {
             if (clazz.getClassesTaken() > 0) {
                 //Get this here already since we might change it if classes where skipped
                 let lastTask = clazz.getCurrentAssignmentText();
-                if (!clazz.getLastVisitAt().addDay(daysSinceLastMeet).sameDay(setDate())) {
+                if (!clazz.getLastVisitAt().addDay(daysSinceLastMeet).sameDay(setDate()) && !hasBeenAwayInThePastWeek()) {
                     sendMessage('You have been skipping classes %SlaveName%');
                     sendMessage('This behavior is not tolerated!');
 
@@ -128,7 +128,7 @@ function handleTodayAcademyClasses() {
                         lastVisit.addDay(1);
                         let today = setDate();
 
-                        let skippedClasses = 0;
+                        let skippedClasses = 1;
 
                         while (!lastVisit.sameDay(today) && !lastVisit.after(today)) {
                             //Check if we would've had a class on that day

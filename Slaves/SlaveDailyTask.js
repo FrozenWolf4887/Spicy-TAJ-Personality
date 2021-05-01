@@ -32,7 +32,7 @@ function getTodaysSlaveTask() {
             lines.add('Today I want you to stand whenever you are eating');
 
             if (HIGH_HEEL_TOY.hasToy() && feelsLikePunishingSlave()) {
-                lines.add('Go ahead and wear your ' + getRandomHighHeel().name + ' while eating too');
+                lines.add('Go ahead and wear your ' + HIGH_HEEL_TOY.getRandom().name + ' while eating too');
             }
 
             break;
@@ -149,7 +149,7 @@ function getTodaysSlaveTask() {
                 break;
             }
         //Fallthrough if forced locked up
-        case 28:
+        case 26:
             if (!isForcedLockedUp()) {
                 lines.add('I want you to follow JOI videos for a total of 60 minutes today');
 
@@ -172,6 +172,27 @@ function getTodaysSlaveTask() {
             break;
     }
 
+    //Daily outfit
+    if (SISSY_LIMIT.isAllowed()) {
+        if (isChance(25)) {
+
+            let outfit = decideOutfit();
+
+            if (outfit.size() > 0) {
+                lines.add('Today I want you to put on the following outfit while at home');
+                lines.addAll(outfit);
+            }
+        }
+
+        if (isChance(25)) {
+            let nightwear = decideNightwear();
+
+            if (nightwear.size() > 0) {
+                lines.add('For the night I want you to wear the following outfit');
+                lines.addAll(nightwear);
+            }
+        }
+    }
 
     //Today also punishment tasks
     if (feelsLikePunishingSlave()) {
@@ -185,7 +206,7 @@ function getTodaysSlaveTask() {
             lines.add('%InAddition% ' + pissedOff);
         }
 
-        switch (randomInteger(0, 13)) {
+        switch (randomInteger(0, 15)) {
             case 0:
                 lines.add('Today I want you to stay on all fours for ' + getDailyTaskTime() + ' minutes');
                 lines.add('And...');
@@ -343,6 +364,18 @@ function getTodaysSlaveTask() {
                 }
 
                 break;
+            case 14:
+                lines.add('I want you to replace one of today\'s meal with the following');
+
+                generateSlaveFoodMeal(lines);
+                break;
+            case 15:
+                if (HIGH_HEEL_TOY.hasToy()) {
+                    //QUALITY: Determine highest heels
+                    lines.add('I want you to wear your most uncomfortable high heels to bed');
+                    lines.add('You may take them off the next morning');
+                }
+                break;
             default:
                 break;
         }
@@ -352,10 +385,9 @@ function getTodaysSlaveTask() {
         lines.add('Today ' + random('you\'ve deserved to be free of any tasks', 'I feel like not giving you any tasks', 'I want you to be free of any tasks', 'I think you\'ve deserved to be free of tasks', 'you\'ve earned to be free of any tasks'));
         lines.add('Enjoy!');
     }
-
-
-//Special Tasks
-//Edge, edge and more edge between 6 and midnight.  No cumming, and any precum must be licked clean
+    
+    //Special Tasks
+    //Edge, edge and more edge between 6 and midnight.  No cumming, and any precum must be licked clean
 
     setVar(VARIABLE.SLAVE_TASK_TODAY, lines);
     setDate(VARIABLE.SLAVE_TASK_SET);
@@ -489,6 +521,65 @@ function generateDailyTeaseRouletteInstructions(lines, categoriesAllowed, teaseT
     }
 
     return false;
+}
+
+function generateSlaveFoodMeal(lines) {
+    let fluid = '300ml ' + random("water", "milk");
+
+    let fluidApplication = ['Cook 50g crushed pasta for 15 minutes (lid closed) with ' + fluid,
+        'Cook 50g crushed pasta for 15 minutes (lid closed) with ' + fluid,
+        'Cook 50g rice for 15 minutes (lid closed) with ' + fluid,
+        'Soak 2 slices of bread cut into small pieces in ' + fluid,
+        'Mix ' + fluid + ' with 50g instant mashed potato mix',
+        'Mix ' + fluid + ' with 50g flour or starch',
+    ];
+
+    lines.add(random(fluidApplication));
+
+    let nutrition = ['Add an egg boiled for 3 minutes to the mix',
+        'Add 100g cheese or 200ml dairy like yogurt to the mix',
+        'Add 200g cooked beans, tofu or tempeh',
+        'Add 200g raw vegetables in small pieces',
+        'Add two pieces of fruit, mashed',
+    ];
+
+    lines.add(random(nutrition));
+
+    let temperature = ['Put it in the freezer until frigid but not frozen',
+        'Put it in the fridge until chilled',
+        'Leave it standing until room temperature',
+        'Warm it up in the microwave',
+        'Heat it up in the microwave until scalding',
+    ];
+
+    lines.add(random(temperature));
+
+    let flavor = ['Add black, szechuan and/or chili pepper',
+        'Add mayonnaise or similar sauce',
+        'Add hot sauce or chili oil',
+        'Add cooking oil',
+        'Add random spices from your spice cabinet',
+        'Add spit or snot',
+        'Add something from outside, like soil or trash',
+        'Add tooth paste',
+        'A sheet of toilet paper',
+    ];
+
+    if (PEE_LIMIT.isAllowed()) {
+        flavor.push("Add some piss");
+    }
+
+    lines.add(random('And to top if off...', 'Lastly...', 'Finally...'));
+    lines.add(random(flavor));
+
+
+    if (feelsLikePunishingSlave()) {
+        lines.add(random('Tie your hands behind your back while eating', 'Pour it on the floor and lick it all up'));
+    } else {
+        lines.add("Serve it in a bowl and it it on the floor");
+    }
+
+    return lines;
 }
 
 function generateNoCummingDailyInstructions(lines) {

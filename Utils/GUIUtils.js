@@ -126,6 +126,18 @@ function createGridPaneGUI() {
             close.setOnAction(function(handle) {
                 dialog.close();
             });
+        },
+
+        addSaveButton: function(row, dialog, writebackGui, saveFunction) {
+            let save = createButton("Save");
+            this.setConstraints(save.button, 1, row);
+            this.getChildren().add(save.button);
+
+            save.setOnAction(function (handle) {
+                writebackGui.writeBack();
+                saveFunction();
+                dialog.close();
+            });
         }
     }
 }
@@ -228,6 +240,17 @@ function createComboBox() {
 
         addChildren: function (object, selected) {
             let indexToSelect = -1;
+
+            if(Array.isArray(object)) {
+                let array = object;
+
+                object = {};
+
+                for(let x = 0; x < array.length; x++) {
+                    object[array[x]] = array[x];
+                }
+            }
+
             for (let property in object) {
                 if (object.hasOwnProperty(property) && typeof object[property] !== 'function') {
                     this.addChoice(property);
@@ -238,7 +261,7 @@ function createComboBox() {
                 }
             }
 
-            if (indexToSelect > -1) {
+            if (indexToSelect !== -1) {
                 this.select(indexToSelect);
             }
 
