@@ -232,12 +232,21 @@ let toy = LOVENSE_TOY_TYPES.MAX.getLovenseToy();
 sendDebugMessage(serializeObject(toy.setVibrate(1)));
 sleep(5);
 sendDebugMessage(serializeObject(toy.setVibrate(0)));
-setVar(VARIABLE.ASS_LEVEL, restoreLevel);*/
+setVar(VARIABLE.ASS_LEVEL, restoreLevel);
+
+
+let tasks = getAcademyClassByName("blowjob").getTasks(getAcademyClassByName("blowjob"));
+
+for(let x = 0; x < tasks.length; x++) {
+    sendDebugMessage(tasks[x]);
+
+    sendDebugMessage(Array.isArray(tasks[x]))
+}
+*/
+
 
 {
-    let outfitLines = decideNightwear();
+    let analOrgasmType = decideAnalOrgasmType();
+    getAnalOrgasmInstructions(analOrgasmType, ORGASM_CATEGORY_RUINED);
 
-    for(let x = 0; x < outfitLines.size(); x++) {
-        sendPinnoteMessage(outfitLines.get(x));
-    }
 }
